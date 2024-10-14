@@ -1,0 +1,31 @@
+{
+  "name": "talenta37-api",
+  "description": "API for Talenta 37 web apps",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate --no-hints",
+    "db:seed": "prisma db seed",
+    "start": "bun run db:migrate:deploy && bun run src/index.ts"
+  },
+  "prisma": {
+    "seed": "bun run prisma/seed.ts"
+  },
+  "dependencies": {
+    "@hono/swagger-ui": "^0.4.1",
+    "@hono/zod-openapi": "^0.16.0",
+    "@hono/zod-validator": "^0.2.2",
+    "@prisma/client": "^5.19.1",
+    "@scalar/hono-api-reference": "^0.5.152",
+    "hono": "^4.6.2",
+    "oslo": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.19.1"
+  },
+  "author": "Naswa Wilantama",
+  "license": "MIT"
+}

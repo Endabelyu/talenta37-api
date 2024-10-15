@@ -17,19 +17,26 @@ model User {
   id String @id @default(cuid())
   username   String @unique
   name       String @db.VarChar(100)
-  email      String? @unique
+  email      String @unique
   password   Password?
   phone      String?  @unique @db.VarChar(32)
   address    String?  @db.VarChar(255)
-  role       String  @default("staff")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  
   orders Order[]
-
+  role       Role     @relation(fields: [roleId], references: [id])
+  roleId     String   // Foreign key to Role model
   @@map("users")
 }
 
+
+model Role {
+  id    String  @id @default(cuid())
+  name  String  @unique  // Role name (e.g., 'admin', 'staff', etc.)
+  users User[]  // Relation to users
+
+  @@map("roles")
+}
 
 model Password {
   id String @id @default(cuid())
@@ -45,50 +52,56 @@ model Password {
 model Frame {
   id        String   @id @default(cuid())
   name      String   @unique 
-  price     Float?   // Price of the frame
-  brand     String?  // Optional brand name for the frame
+  price     Int  // Price of the frame
+  brand     String  // Optional brand name for the frame
+  material     String  // Optional brand name for the frame
+  imageURL String?  // Optional image linkfor the frame
   description String?  @db.VarChar(255)
-  orders    Order[]  // Relation to orders
+  // orders    Order[]  // Relation to orders
   stock     Int?     // Optional stock quantity
+  sku       String?  // Optional lens sku
   @@map("frames")
 }
 
 model Lens {
   id        String   @id @default(cuid())
+  brand     String  // Optional brand name for the frame
   name      String   @unique
-  price     Float?   // Price of the lens
+  price     Int?   // Price of the lens
   type      String?  // Optional type of lens (e.g., single vision, progressive)
   material  String?  // Optional lens material (e.g., plastic, glass)
-
-  orders    Order[]  // Relation to orders
-
+  stock     Int?     // Optional stock quantity
+  // orders    Order[]  // Relation to orders
+  sku       String?  // Optional lens sku
   @@map("lenses")
 }
 
 model Order {
   id            String   @id @default(cuid())
-  user          User     @relation(fields: [userId], references: [id])
   userId        String
-
-  rightEyeSph   Float   // Spherical power for right eye
-  rightEyeCyl   Float?   // Cylindrical power for right eye
+  user          User     @relation(fields: [userId], references: [id])
+  customerName  String
+  customerPhone String  
+  rightEyeSph   String   // Spherical power for right eye
+  rightEyeCyl   String?   // Cylindrical power for right eye
   rightEyeAxis  Int?     // Axis for right eye
-  rightEyeAdd   Float?   // Addition power for right eye
+  rightEyeAdd   String?   // Addition power for right eye
 
-  leftEyeSph    Float   // Spherical power for left eye
-  leftEyeCyl    Float?   // Cylindrical power for left eye
+  leftEyeSph    String   // Spherical power for left eye
+  leftEyeCyl    String?   // Cylindrical power for left eye
   leftEyeAxis   Int?     // Axis for left eye
-  leftEyeAdd    Float?   // Addition power for left eye
+  leftEyeAdd    String?   // Addition power for left eye
 
-  frame         Frame?   @relation(fields: [frameId], references: [id])
-  frameId       String?  // Foreign key to Frame
+  // frame         Frame?   @relation(fields: [frameId], references: [id])
+  // frameId       String?  // Foreign key to Frame
+  frame         String
+  lens          String
+  // lens          Lens?    @relation(fields: [lensId], references: [id])
+  // lensId        String?  // Foreign key to Lens
 
-  lens          Lens?    @relation(fields: [lensId], references: [id])
-  lensId        String?  // Foreign key to Lens
-
-  price          Float?    // Price of the order
-  framePrice     Float?    // Price of the frame
-  lensPrice      Float?    // Price of the lens
+  price          Int?    // Price of the order
+  // framePrice     Float?    // Price of the frame
+  // lensPrice      Float?    // Price of the lens
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

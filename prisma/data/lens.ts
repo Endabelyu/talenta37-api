@@ -1,0 +1,38 @@
+export const lenses = [
+  {
+    name: "Blueguard",
+    brand: "Domba mas",
+    type: "spherical",
+    material: "plastic",
+    price: 10000,
+    stock: 7,
+    sku: "BGD-DMB",
+  },
+  {
+    name: "Normal",
+    brand: "Domba mas",
+    type: "spherical",
+    material: "plastic",
+    stock: 7,
+    price: 10000,
+    sku: "NM-DMB",
+  },
+  {
+    name: "Photocromic",
+    brand: "Domba mas",
+    type: "spherical",
+    material: "plastic",
+    price: 10000,
+    stock: 7,
+    sku: "PTC-DMB",
+  },
+  {
+    name: "Blueguard Photocromic",
+    brand: "Domba mas",
+    type: "spherical",
+    material: "plastic",
+    price: 10000,
+    stock: 7,
+    sku: "BGP-DMB",
+  },
+];

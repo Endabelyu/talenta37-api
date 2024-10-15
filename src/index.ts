@@ -4,6 +4,9 @@ import { logger } from "hono/logger";
 
 const app = new OpenAPIHono();
 import { apiReference } from "@scalar/hono-api-reference";
+import { authRoute } from "./routes/auth.route";
+import { masterRoute } from "./routes/master.route";
+import { orderRoute } from "./routes/order.route";
 app.get("/", (c) => {
   return c.text("Hello This is Talenta 37 API!");
 });
@@ -42,12 +45,14 @@ app.doc("/doc", {
   },
 });
 
-// // API ROUTES
+// API ROUTES
+app.route("/auth", authRoute);
+app.route("/masters", masterRoute);
+app.route("/orders", orderRoute);
+
 // app.route("/products", productRoute);
 // app.route("/users", userRoute);
-// app.route("/auth", authRoute);
 // app.route("/carts", cartRoute);
-// app.route("/orders", orderRoute);
 
 export default {
   port: process.env.PORT || 3000,

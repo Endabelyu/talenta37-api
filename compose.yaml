@@ -6,4 +6,4 @@ services:
     build:
       context: .
     ports:
-      - "${PORT}:3100" # Use the PORT environment variable
+      - "${PORT}:3100"

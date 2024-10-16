@@ -1,21 +1,9 @@
+version: "3.8"
+
 services:
   backend:
     image: nakama-api
     build:
       context: .
     ports:
-      - "3000:3100"
-    depends_on:
-      - database
-
-  database:
-    image: postgres:alpine
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    env_file:
-      - path: .env
-
-volumes:
-  pgdata:
+      - "${PORT}:3100" # Use the PORT environment variable

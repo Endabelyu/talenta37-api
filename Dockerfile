@@ -4,12 +4,14 @@ FROM oven/bun:debian
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
-# Copy app files
-COPY . .
-COPY package.json .
-COPY bun.lockb .
+# Copy package files first for better caching
+COPY package.json bun.lockb ./
+
 # Install dependencies
 RUN bun install --frozen-lockfile
+
+# Copy the rest of the application files
+COPY . .
 
 # Generate Prisma
 RUN bun run db:generate

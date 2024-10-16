@@ -45,4 +45,4 @@ jobs:
             docker pull endabelyu/talenta37-api:latest
             
             # Run the new container on port 3001
-            docker run -d --name talenta37-api -p 3001:3001 endabelyu/talenta37-api:latest
+            docker run -d --name talenta37-api -p 3001:3000 endabelyu/talenta37-api:latest

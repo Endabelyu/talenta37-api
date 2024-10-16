@@ -15,6 +15,6 @@ COPY . .
 
 # Generate Prisma
 RUN bun run db:generate
-EXPOSE 3001
+
 # Run the application
 CMD ["bun", "start"]

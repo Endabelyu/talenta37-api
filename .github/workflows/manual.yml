@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "VPS_HOST: ${{ secrets.VPS_HOST }}"
           echo "VPS_USER: ${{ secrets.VPS_USER }}"
-          echo "VPS_USER: ${{ secrets }}"
+          echo "VPS_USER: ${{ secrets.VPS_SSH_KEY }}"
           
       # Deploy to VPS via SSH
       # - name: Deploy to VPS

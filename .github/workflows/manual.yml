@@ -26,7 +26,10 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: endabelyu/talenta37-api:latest
-          
+      
+      - name: Install jq
+        run: sudo apt-get install -y jq
+      
       - name: Check Secrets
         run: |
           echo "VPS_HOST: ${{ secrets.VPS_HOST }}"

@@ -1,12 +1,13 @@
 # Use Bun image from the Docker Hub
-FROM oven/bun:latest
+FROM oven/bun:debian
 
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
 # Copy app files
 COPY . .
-
+COPY package.json .
+COPY bun.lockb .
 # Install dependencies
 RUN bun install --frozen-lockfile
 

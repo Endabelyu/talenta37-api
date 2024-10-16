@@ -6,7 +6,7 @@ export const orderPayload = z.object({
     .min(4)
     .max(100)
     .openapi({ example: "Customer Name" }), // Required frame
-  customerPhone: z.string().min(4).max(100).openapi({ example: "081313131" }), // Required frame
+  customerPhone: z.string().min(10).max(100).openapi({ example: "081313131" }), // Required frame
   frame: z.string().min(4).max(100).openapi({ example: "Plastic Black" }), // Required frame
   lens: z.string().min(4).max(100).openapi({ example: "Plastic Black" }),
   price: z.number().min(1).openapi({ example: 100000 }),

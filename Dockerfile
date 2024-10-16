@@ -1,5 +1,5 @@
 # Use Bun image from the Docker Hub
-FROM oven/bun:debian
+FROM oven/bun:latest
 
 # Create and change to the app directory
 WORKDIR /usr/src/app

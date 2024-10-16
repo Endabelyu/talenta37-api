@@ -35,8 +35,14 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /path/to/your/app  # Update to your app's directory
-            git pull origin main  # Pull the latest code
-            docker-compose down   # Stop the current containers
-            docker-compose build  # Build the new version
-            docker-compose up -d  # Start the containers in detached mode
+            # Stop existing container if it exists
+            if [ "$(docker ps -q -f name=talenta37-api)" ]; then
+              docker stop talenta37-api
+              docker rm talenta37-api
+            fi
+
+            # Pull the latest image from the registry
+            docker pull endabelyu/talenta37-api:latest
+            
+            # Run the new container on port 3001
+            docker run -d --name talenta37-api -p 3001:3001 endabelyu/talenta37-api:latest
